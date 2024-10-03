@@ -59,14 +59,14 @@ for (k in 1:K) {
     #-- Call the global optimization solver
     # library(DEoptim)
     lb = c(-1, -1); ub = c(1, 1)
-    sol = DEoptim::DEoptim(objfun, lb, ub,
-                   DEoptim::DEoptim.control(trace=FALSE, itermax=500))
+    sol = DEoptim(objfun, lb, ub,
+                  DEoptim.control(trace=FALSE, itermax=500))
     s = c(unname(sol$optim$bestmem[1]), unname(sol$optim$bestmem[2]), 
           -sol$optim$bestval)
     # Refine with local optimizer
     # sol = optim(par=c(s[1], s[2]), fn=objfun, method="BFGS")
     # s = c(sol$par[1], sol$par[2], -sol$value)
-    q
+
     #-- Plot the resulting circle 
     plotCircle(s[1], s[2], s[3], 
                col=k, border=k)  # border = "white"
